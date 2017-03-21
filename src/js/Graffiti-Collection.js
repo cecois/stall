@@ -10,9 +10,9 @@ var GraffitiCollection = Backbone.Collection.extend({
 		,parse: function(response) {
 
 
-console.log("response:");console.log(response);
+// console.log("response:");console.log(response);
 
-_.each(response.features,function(f){console.log("feature:",f);})
+// _.each(response.features,function(f){console.log("feature:",f);})
         // var feats = _.each(response.features,function(f,i) {
 
         // });
