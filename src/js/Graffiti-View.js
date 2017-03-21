@@ -7,13 +7,15 @@ var GraffitiView = Backbone.View.extend({
 	// template: Handlebars.templates['BaseMapsMenuViewTpl'],
 	initialize: function() {
 
-		// this.collection.bind('change:active', this.render, this);
+		this.collection.bind('change', this.render, this);
 		// this.listenTo(appState,'change:baselayer', this.render, this);
 		this.render()
 	}
 	,render: function() {
 		// $(this.el).html(this.template({
-
+			_.each(this.collection.models,function(m){
+				console.log("m:",m)
+			})
 		// 	rows: this.collection.toJSON()
 
 		// }));
