@@ -21,6 +21,13 @@ window.appState = new State();
 window.appPanels = new PanelsCollection(panelz.panels);
 window.appPanelMenuView = new PanelMenuView({collection:appPanels});
 
+// CLOUDMADE ET AL
+mapBaseLayers = new BaseLayersCollection(baselayerz.layers);
+
+window.mapBaseMapView = new BaseMapView({
+    collection: mapBaseLayers
+});
+
 window.appGraffiti = new GraffitiCollection();
 window.appGraffitiView = new GraffitiView({collection:appGraffiti});
 
@@ -34,12 +41,3 @@ window.appStateView  = new StateView({model:appState})
 // window.appAOI = new AOI();window.appAOIView  = new AOIView({model:appAOI})
 
 window.appQuery = new Query();window.appQueryView  = new QueryView({model:appQuery})
-// CLOUDMADE ET AL
-mapBaseLayers = new BaseLayersCollection(baselayerz.layers);
-
-    // window.appBaseMapsMenuView = new BaseMapsMenuView({
-    //     collection: mapBaseLayers
-    // });
-    window.mapBaseMapView = new BaseMapView({
-        collection: mapBaseLayers
-    });

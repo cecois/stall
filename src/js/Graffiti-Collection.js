@@ -7,15 +7,12 @@ var GraffitiCollection = Backbone.Collection.extend({
 		// this.listenTo(appState, 'change:slug', this.deactivate);
 		options || (options = {});
 	}
-		,parse: function(response) {
+	,parse: function(response) {
+
+		var feats = _.each(response.features,function(f,i) {
 
 
-// console.log("response:");console.log(response);
-
-// _.each(response.features,function(f){console.log("feature:",f);})
-        // var feats = _.each(response.features,function(f,i) {
-
-        // });
+		});
 
         // return feats
         return response.features
