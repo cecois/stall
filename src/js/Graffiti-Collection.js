@@ -4,7 +4,7 @@ var GraffitiCollection = Backbone.Collection.extend({
 		return "assets/offline/static.geojson";
 	},
 	initialize: function(options) {
-		// this.listenTo(appState, 'change:slug', this.deactivate);
+		this.listenTo(appState, 'change:query', this.fetch);
 		options || (options = {});
 	}
 	,parse: function(response) {

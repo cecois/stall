@@ -8,6 +8,7 @@ var GraffitiView = Backbone.View.extend({
 	initialize: function() {
 		GLJ = L.geoJson().addTo(map);
 		this.collection.bind('change', this.render, this);
+		// this.collection.bind('reset', this.render, this);
 		// this.listenTo(appState,'change:baselayer', this.render, this);
 		this.render()
 	}
@@ -35,9 +36,9 @@ var GraffitiView = Backbone.View.extend({
             // })
         } //oneachfeature
         L.geoJson(gjz, {
-        	// style: function(fea, lay) {
-        	// 	return MILLERIA.stylize(fea, 0, 0)
-        	// },
+        	style: function(fea, lay) {
+        		return UTIL.get_style(fea)
+        	},
         	onEachFeature: on_each,
         	pointToLayer: function(feature, latlng) {
                 // return L.circleMarker(latlng, {radius: 8,fillColor: "#ff7800",color: "#000",weight: 1,opacity: 1,fillOpacity: 0.8});
@@ -45,6 +46,7 @@ var GraffitiView = Backbone.View.extend({
             }
 
         }).addTo(GLJ)
+        map.fitBounds(GLJ.getBounds());
         return this
             // .pop()
         }
