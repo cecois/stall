@@ -1,7 +1,11 @@
 var GraffitiCollection = Backbone.Collection.extend({
 	model: Panel,
 	url: function() {
+		// currently a static dump of fake data
 		return "assets/offline/static.geojson";
+
+		// but it will ultimately be a dynamic query that, in effect, handles the weekly "cleaning"
+		// return "http://carto.com/some/query/with/date_added/newer/than/now"
 	},
 	initialize: function(options) {
 		this.listenTo(appState, 'change:query', this.fetch);

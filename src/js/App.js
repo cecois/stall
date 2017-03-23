@@ -41,3 +41,7 @@ window.appStateView  = new StateView({model:appState})
 // window.appAOI = new AOI();window.appAOIView  = new AOIView({model:appAOI})
 
 window.appQuery = new Query();window.appQueryView  = new QueryView({model:appQuery})
+
+// now bootstrap the stuff we want to appear right away
+// ...starting with, u know, the graffiti
+appGraffiti.fetch()
