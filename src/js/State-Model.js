@@ -1,14 +1,17 @@
 var State = Backbone.Model.extend({
 	defaults: {
-		"downout": "down",
-		"slug": "home",
-		"bbox": "3.1626892089843754,50.61113171332364,5.472564697265625,51.172455303299",
-		"baselayer": null,
+		"downout": "down"
+		,"slug": "home"
+		,bbox: "-180,-90,180,90"
+		// ,bbox: function(){
+		// 	return "-180,-90,180,90";
+		// }
+		,"baselayer": null
 		// "overlays": null,
 		// "page": null,
 		// "apikey": "0",
 		// "active": null,
-		"query": "",
+		,"query": ""
 		// "active": null,
 		// "dlex": "map",
 		// "querytype": null
