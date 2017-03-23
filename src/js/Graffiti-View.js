@@ -7,10 +7,10 @@ var GraffitiView = Backbone.View.extend({
 	// template: Handlebars.templates['BaseMapsMenuViewTpl'],
 	initialize: function() {
 		GLJ = L.geoJson().addTo(map);
-		this.collection.bind('change', this.render, this);
+		this.collection.bind('sync', this.render, this);
 		// this.collection.bind('reset', this.render, this);
 		// this.listenTo(appState,'change:baselayer', this.render, this);
-		this.render()
+		// this.render()
 	}
 	,render: function() {
 		GLJ.clearLayers();
@@ -46,8 +46,9 @@ var GraffitiView = Backbone.View.extend({
             }
 
         }).addTo(GLJ)
-        map.fitBounds(GLJ.getBounds());
-        return this
+        if(GLJ.getBounds().isValid()!==false){
+        	map.fitBounds(GLJ.getBounds());}
+        	return this
             // .pop()
         }
     });
