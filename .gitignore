@@ -1,2 +1,3 @@
 .DS_Store
 Config.js
+config/httpd*.conf
