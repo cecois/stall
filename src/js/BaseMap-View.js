@@ -10,9 +10,12 @@ var BaseMapView = Backbone.View.extend({
     zoom: 7
 })
 
-		map.on('moveend',function(f){
-			appState.upbbox();
-		});
+// ordinarily we set a listener on the map so that any given position of the map can be traded (shared)
+// off here by choice
+		//map.on('moveend',function(f){
+		//	appState.upbbox();
+	//	});
+
 		// map.setMaxBounds(UTIL.boundsFromBBOX("-180,-90,180,90"))
 		// this.listenTo(appState, 'change:bbox', this.zoom)
 		// this.listenTo(appState, 'change', this.render)

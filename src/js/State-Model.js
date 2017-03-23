@@ -2,7 +2,7 @@ var State = Backbone.Model.extend({
 	defaults: {
 		"downout": "down",
 		"slug": "home",
-		"bbox": "3.1626892089843754,50.61113171332364,5.472564697265625,51.172455303299",
+		"bbox": "-180,-89,180,89",
 		"baselayer": null,
 		// "overlays": null,
 		// "page": null,
@@ -70,7 +70,8 @@ return this
 // var uactive = this.get("active")
 var ubbox = this.get("bbox")
 
-var state = "#" + uslug + "/" + ublayer + "/" + udownout + "/" + ubbox
+var state = "#" + uslug + "/" + ublayer + "/" + udownout + "/" 
+//+ ubbox
 
 return state
 
