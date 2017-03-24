@@ -42,7 +42,9 @@ var GraffitiView = Backbone.View.extend({
         	onEachFeature: on_each,
         	pointToLayer: function(feature, latlng) {
                 // return L.circleMarker(latlng, {radius: 8,fillColor: "#ff7800",color: "#000",weight: 1,opacity: 1,fillOpacity: 0.8});
-                return L.circleMarker(latlng);
+                var myIcon = L.divIcon({className: 'stall-div-1',html:feature.properties.name});
+
+return L.marker(latlng, {icon: myIcon}).addTo(map);
             }
 
         }).addTo(GLJ)

@@ -1,10 +1,7 @@
 var Query = Backbone.Model.extend({
 	defaults: {
-		// qurl: "../../solr/select/?version=2.2&rows=25&defType=edismax&wt=json&q=",
-		// qroot: "http://libgeoqa:8080/solr/select/?version=2.2&indent=off&wt=json&q=",
 		qroot: "http://localhost:8989/solr/biblio/select/?version=2.2&indent=off&wt=json&q=",
 		querystring: '',
-		// querydisplay: this.get_query_display(),
 		querydisplay: null,
 		spatialSolr: '',
 		hash: "",
@@ -69,9 +66,6 @@ return (appState.get("query")=="*:*")?"*":appState.get("query")
 		
 		var query = '{!lucene q.op=AND df=description}' + querystring + '&bf=' + this.get_spatial() + "&start=" + this.get_record_offset() + this.get_sorters()
 
-		// this.set({
-		// 	"query": query
-		// });
 
 		return query
 	},
@@ -144,7 +138,6 @@ return (appState.get("query")=="*:*")?"*":appState.get("query")
 	},
 	get_record_offset: function() {
 		var offset = (appState.get("page") * 25 - 25);
-		// this.set({recordOffset:offset});
 		return offset;
 	}
 

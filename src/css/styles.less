@@ -31,8 +31,8 @@ COMMON COLORS
 // @primary-glow:#5c087b;
 /*@primary-highlight:#8a755b;*/
 @primary-highlight:#a32a0d;
-@secondary:#40897D;
-@secondary-glow:@llGrayDark;
+@secondary:#000;
+@secondary-glow:#3D3E3D;
 @anno:@lgod-gray;
 @link-primary:#7d230a;
 @link-secondary:#591806;
@@ -501,7 +501,13 @@ body{
 /* ----------
 SEARCH STUFF
 ------------ */
-
+#bt-query{
+  color:white;
+  background-color:@secondary;
+  &:hover{
+    background-color:@secondary-glow;
+  }
+}
 #search-active{
   padding:14px 22px;
   z-index:40;
@@ -932,8 +938,12 @@ CUSTOM AND HOLIDAY STUFF
 
 
 /* ----------
-MAP STUFF
+MAP & LEAFLET STUFF
 ------------ */
+
+.leaflet-marker-icon{
+  width:44px;
+}
 
 #map {
   position: fixed;
@@ -1291,7 +1301,10 @@ LEAFLET
 }
 
 
-
+.stall-div-1{
+  font-size:1.2em;
+  line-height: .8em;
+}
 
 /* ----------
 BETA SPLASH
