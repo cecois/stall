@@ -102,8 +102,6 @@ return this
 
 
 	var service_url = 'http://nominatim.openstreetmap.org/search.php?limit=5&format=jsonv2&q=' + qv;
-			// var solr_url = 'http://libgeo:8080/search.php?limit=5&format=jsonv2&q='+qv;
-
 
 			triagePlaces.reset()
 
