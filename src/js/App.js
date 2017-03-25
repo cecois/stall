@@ -32,7 +32,7 @@ window.appGraffitiView = new GraffitiView({collection:appGraffiti});
 
 // MANAGES PANECONTAINERS FOR ONE THING
 window.appStateView  = new StateView({model:appState})
-window.appQuery = new Query();window.appQueryView  = new QueryView({model:appQuery})
+window.appSubmit = new Submit();window.appSubmitView  = new SubmitView({model:appSubmit})
 
 // now bootstrap the stuff we want to appear right away
 // ...starting with, u know, the graffiti

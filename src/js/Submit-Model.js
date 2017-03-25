@@ -1,4 +1,4 @@
-var Query = Backbone.Model.extend({
+var Submit = Backbone.Model.extend({
 	defaults: {
 		qroot: "http://localhost:8989/solr/biblio/select/?version=2.2&indent=off&wt=json&q=",
 		querystring: '',

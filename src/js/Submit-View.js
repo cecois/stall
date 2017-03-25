@@ -1,13 +1,13 @@
-var QueryView = Backbone.View.extend({
+var SubmitView = Backbone.View.extend({
 	el: $("#inputContainer"),
-	template: Handlebars.templates['QueryFormViewTpl'],
+	template: Handlebars.templates['SubmitFormViewTpl'],
 	events: {
-		"keyup": "delay",
-		"click #bt-query": "execute_by_click"
+		// "keyup": "delay",
+		// "click #bt-query": "execute_by_click"
 	},
 	initialize: function() {
 		this.render()
-		this.model.bind("change:query", this.render, this)
+		// this.model.bind("change:query", this.render, this)
 		// this.listenTo(appState, 'change:query', this.prequery);
 		// this.listenTo(appState, 'change:query', this.render);
 		return this
