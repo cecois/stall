@@ -20,7 +20,6 @@ var BaseMapsMenuView = Backbone.View.extend({
 		// var newaslz = _.reject(aslz, function(l) { //get rid of the one(s) that are baselayers cuz we gonna add a fresh one
 		// 	return _.contains(mapBaseLayers.pluck("name"), l)
 		// });
-console.log("setting baselayer w/:");console.log(n);
 		// newaslz.push(n)
 		appState.set({
 			baselayer: n

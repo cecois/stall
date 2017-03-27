@@ -6,6 +6,8 @@ var SubmitView = Backbone.View.extend({
 		// "click #bt-query": "execute_by_click"
 	},
 	initialize: function() {
+		NEXT = L.featureGroup()
+		.addTo(map);
 		this.render()
 		// this.model.bind("change:query", this.render, this)
 		// this.listenTo(appState, 'change:query', this.prequery);
@@ -14,36 +16,69 @@ var SubmitView = Backbone.View.extend({
 	},
 	report:function(e){
 
-if($("#graffiti-submission").val().length==1){
-	var og = $("#graffiti-submission").val();
-	
-}
+		if(NEXT.getLayers()>0){
+			if($("#graffiti-submission").val().length==0){
+			// var og = $("#graffiti-submission").val();
+			NEXT.clearLayers()
+		}
+	} else {
+
+		var envold = turf.bboxPolygon(GLJ.getBounds().toBBoxString().split(","))
+
+		var oldwest = envold.geometry.coordinates[0][0][0]
+		var oldsout = envold.geometry.coordinates[0][0][1]
+		var oldeast = envold.geometry.coordinates[0][1][0]
+		var oldnort = envold.geometry.coordinates[0][2][1]
+
+		var NEXTPT = turf.random('points', 1, {
+			bbox: [parseFloat(oldeast),-80,parseFloat(oldeast)-1,80]
+		});
+
+
+
+		// L.geoJSON(NEXTPT).addTo(NEXT);
+
+		var NL = L.geoJson(NEXTPT, {
+			style: function(fea, lay) {
+				return UTIL.get_style()
+			},
+			onEachFeature: on_each,
+			pointToLayer: function(feature, latlng) {
+                // return L.circleMarker(latlng, {radius: 8,fillColor: "#ff7800",color: "#000",weight: 1,opacity: 1,fillOpacity: 0.8});
+                var myIcon = L.divIcon({className: 'stall-div-new',html:null});
+
+                return L.marker(latlng, {icon: myIcon}).addTo(map);
+            }
+
+        }).addTo(NEXT)
+
+	}
 // console.log($(this.el).value().length);
 
 return this
 
 
-	},
-	execute_by_click: function() {
+},
+execute_by_click: function() {
 
-		var qv = $(this.el).find("#inputContainer input").val()
-
-
-
-		$("#triageContainer").toggle()
-
-		appState.set({
-			query: qv,
-			slug: "search"
-		})
-		return this
+	var qv = $(this.el).find("#inputContainer input").val()
 
 
-	},
-	render: function() {
-		$(this.el).html(this.template(this.model.toJSON()))
-		return this
-	},
+
+	$("#triageContainer").toggle()
+
+	appState.set({
+		query: qv,
+		slug: "search"
+	})
+	return this
+
+
+},
+render: function() {
+	$(this.el).html(this.template(this.model.toJSON()))
+	return this
+},
 	delay: function(event) { //  tnx http://stackoverflow.com/questions/6756381/jquery-backbone-js-delay-function-call
 		var self = this;
 		if (self.timer)
@@ -72,7 +107,7 @@ return this
 prequery: function(g) {
 
 
-		var qv = appState.get("query")
+	var qv = appState.get("query")
 
 		switch (true) { //let's try to catch coordinate input
 		case (!isNaN(qv.split(",")[0]) && !isNaN(qv.split(",")[1]) && (qv.split(",").length > 2 && qv.split(",")[2].indexOf("m") > -1)):
@@ -115,7 +150,7 @@ return this
 
 	var service_url = 'http://nominatim.openstreetmap.org/search.php?limit=5&format=jsonv2&q=' + qv;
 
-			triagePlaces.reset()
+	triagePlaces.reset()
 
 			// TEMPORARY DISABLED SO WE DON'T HIT NOMINATIM TOO HARD DURING TESTING
 			if(Config.MODE!=="bus"){
