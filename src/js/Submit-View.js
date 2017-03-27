@@ -2,7 +2,7 @@ var SubmitView = Backbone.View.extend({
 	el: $("#inputContainer"),
 	template: Handlebars.templates['SubmitFormViewTpl'],
 	events: {
-		// "keyup": "delay",
+		"keyup": "report",
 		// "click #bt-query": "execute_by_click"
 	},
 	initialize: function() {
@@ -11,6 +11,18 @@ var SubmitView = Backbone.View.extend({
 		// this.listenTo(appState, 'change:query', this.prequery);
 		// this.listenTo(appState, 'change:query', this.render);
 		return this
+	},
+	report:function(e){
+
+if($("#graffiti-submission").val().length==1){
+	var og = $("#graffiti-submission").val();
+	
+}
+// console.log($(this.el).value().length);
+
+return this
+
+
 	},
 	execute_by_click: function() {
 

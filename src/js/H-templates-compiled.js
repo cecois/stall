@@ -31,6 +31,6 @@ templates['PanelMenuViewTpl'] = template({"1":function(depth0,helpers,partials,d
   else { return ''; }
   },"useData":true});
 templates['SubmitFormViewTpl'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "\n<div class=\"col-lg-12\">\n	<div class=\"input-group col-lg-12\">\n\n		<textarea class=\"col-lg-12\" rows=\"1\" placeholder=\"say anything\" required></textarea>\n\n		<div id=\"bt-query\" class=\"btn btn-default col-sm-12\" type=\"\">Submit</div>\n		\n	</div><!-- /input-group -->\n</div><!-- /.col-lg-6 -->\n\n\n";
+  return "\n<div class=\"col-lg-12\">\n	<div class=\"input-group col-lg-12\">\n\n		<textarea id=\"graffiti-submission\" class=\"col-lg-12\" rows=\"1\" placeholder=\"say anything\" required></textarea>\n\n		<div id=\"bt-query\" class=\"btn btn-default col-sm-12\" type=\"\">Submit</div>\n		\n	</div><!-- /input-group -->\n</div><!-- /.col-lg-6 -->\n\n\n";
 },"useData":true});
 })();
