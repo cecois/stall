@@ -45,19 +45,25 @@ var SubmitView = Backbone.View.extend({
 			// onEachFeature: on_each,
 			pointToLayer: function(feature, latlng) {
                 // return L.circleMarker(latlng, {radius: 8,fillColor: "#ff7800",color: "#000",weight: 1,opacity: 1,fillOpacity: 0.8});
-                var micon = L.divIcon({className: 'stall-div-new',html:null});
+                var micon = L.divIcon({className: 'stall-div-new',html:"888888 8adf8 888888"});
 
-                return L.marker(latlng, {icon: micon}).addTo(map);
+                return L.marker(latlng, {icon: micon})
+                // .addTo(map);
+                // return L.marker(latlng).addTo(map);
             }
 
         }).addTo(NEXT)
+        // .on('click',function(e){
+        // 	var nicon = L.divIcon({className: 'stall-div-new',html:"00"});
+        // 	e.layer.setIcon(nicon);
+        // })
 
-        // console.log("xpp",xpp);
+		// console.log("xpp",xpp);
         // $(temp0.getLayers()[0]._icon).html("jj")
 
-	}
+    }
 
-return this
+    return this
 
 
 },
