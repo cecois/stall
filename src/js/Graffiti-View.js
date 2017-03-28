@@ -6,11 +6,41 @@ var GraffitiView = Backbone.View.extend({
 	},
 	// template: Handlebars.templates['BaseMapsMenuViewTpl'],
 	initialize: function() {
-		GLJ = L.geoJson().addTo(map);
+		// GLJ = L.geoJson().addTo(map);
+		
+GLJ = L.featureGroup()
+    .addTo(map);
+
 		this.collection.bind('sync', this.render, this);
 		// this.collection.bind('reset', this.render, this);
 		// this.listenTo(appState,'change:baselayer', this.render, this);
 		// this.render()
+	}
+	,get_new_location: function(){
+
+var ll = null;
+
+// make envelope of extant rawbox
+var oldenv = turf.envelope(appState.get("rawbox"))
+// make new bbox whose westmost is eastmost of env and add 1 degree (next we'll randomize 100 points and take the nearest, providing in effect a ~random east+north shift)
+var oldwest = oldenv.geometry.coordinates[0][0][0]
+var oldsout = oldenv.geometry.coordinates[0][0][1]
+var oldeast = oldenv.geometry.coordinates[0][1][0]
+var oldnort = oldenv.geometry.coordinates[0][2][1]
+
+var newwest = oldeast
+var neweast = oldeast+1
+
+var points = turf.random('points', 1, {
+  bbox: [newwest, -90, neweast, 90]
+});
+
+L.geoJSON(points).addTo(map);
+
+// randomize 1 point within
+
+return ll
+
 	}
 	,render: function() {
 		GLJ.clearLayers();

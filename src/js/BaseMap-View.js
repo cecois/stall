@@ -2,13 +2,13 @@ var BaseMapView = Backbone.View.extend({
 
 	id: "map",
 	initialize: function() {
-		
+
 		window.map = new L.Map('map', {
-    zoomControl: false,
-    center: [51.505, -0.09],
-    attributionControl: false,
-    zoom: 7
-})
+			zoomControl: false,
+			center: [51.505, -0.09],
+			attributionControl: false,
+			zoom: 7
+		})
 
 // ordinarily we set a listener on the map so that any given position of the map can be traded (shared)
 // off here by choice
@@ -38,7 +38,6 @@ var BaseMapView = Backbone.View.extend({
 			active: true
 		});
 
-		console.log("am.34:");console.log(am.get("name"));
 
 		var def = (typeof am !== 'undefined')?am.get("definition"):null;
 

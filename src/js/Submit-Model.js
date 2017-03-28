@@ -1,4 +1,4 @@
-var Query = Backbone.Model.extend({
+var Submit = Backbone.Model.extend({
 	defaults: {
 		qroot: "http://localhost:8989/solr/biblio/select/?version=2.2&indent=off&wt=json&q=",
 		querystring: '',
@@ -14,14 +14,15 @@ var Query = Backbone.Model.extend({
 
 	initialize: function() {
 
-		this.listenTo(appState, 'change', function() {
-			this.set({querydisplay:this.get_query_display(),querystring:this.get_query(),query:appState.get("query")});
-		});
+		// this.listenTo(appState, 'change', function() {
+		// 	this.set({querydisplay:this.get_query_display(),querystring:this.get_query(),query:appState.get("query")});
+		// });
 
+		return this
 	},
 	get_query_display: function(){
 
-return (appState.get("query")=="*:*")?"*":appState.get("query")
+		return (appState.get("query")=="*:*")?"*":appState.get("query")
 
 	},
 	get_sorters: function() {
@@ -63,7 +64,7 @@ return (appState.get("query")=="*:*")?"*":appState.get("query")
 
 
 		var queryOG = '{!lucene q.op=AND df=description}' + querystring + '~' + this.get_spatial() + this.get_filter_query() + "&start=" + this.get_record_offset() + this.get_sorters()
-		
+
 		var query = '{!lucene q.op=AND df=description}' + querystring + '&bf=' + this.get_spatial() + "&start=" + this.get_record_offset() + this.get_sorters()
 
 

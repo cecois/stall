@@ -14,10 +14,8 @@ var GraffitiCollection = Backbone.Collection.extend({
 	}
 	,parse: function(response) {
 
-		var feats = _.each(response.features,function(f,i) {
+appState.set({rawbox:response});
 
-
-		});
 
         return response.features
     }
