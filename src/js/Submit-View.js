@@ -38,22 +38,24 @@ var SubmitView = Backbone.View.extend({
 
 		// L.geoJSON(NEXTPT).addTo(NEXT);
 
-		var NL = L.geoJson(NEXTPT, {
+		var xpp = L.geoJson(NEXTPT, {
 			style: function(fea, lay) {
 				return UTIL.get_style()
 			},
-			onEachFeature: on_each,
+			// onEachFeature: on_each,
 			pointToLayer: function(feature, latlng) {
                 // return L.circleMarker(latlng, {radius: 8,fillColor: "#ff7800",color: "#000",weight: 1,opacity: 1,fillOpacity: 0.8});
-                var myIcon = L.divIcon({className: 'stall-div-new',html:null});
+                var micon = L.divIcon({className: 'stall-div-new',html:null});
 
-                return L.marker(latlng, {icon: myIcon}).addTo(map);
+                return L.marker(latlng, {icon: micon}).addTo(map);
             }
 
         }).addTo(NEXT)
 
+        // console.log("xpp",xpp);
+        // $(temp0.getLayers()[0]._icon).html("jj")
+
 	}
-// console.log($(this.el).value().length);
 
 return this
 
