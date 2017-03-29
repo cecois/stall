@@ -16,74 +16,68 @@ var SubmitView = Backbone.View.extend({
 	},
 	report:function(e){
 
-			if($("#graffiti-submission").val().length==0){
-		if(NEXT.getLayers().length>0){
+		if($("#graffiti-submission").val().length==0){
+			if(NEXT.getLayers().length>0){
 			// var og = $("#graffiti-submission").val();
 			NEXT.clearLayers()
 		}
 	} else {
 
-if(NEXT.getLayers().length<1)
-{
+		if(NEXT.getLayers().length<1)
+		{
 			var envold = turf.bboxPolygon(GLJ.getBounds().toBBoxString().split(","))
-	
+
 			var oldwest = envold.geometry.coordinates[0][0][0]
 			var oldsout = envold.geometry.coordinates[0][0][1]
 			var oldeast = envold.geometry.coordinates[0][1][0]
 			var oldnort = envold.geometry.coordinates[0][2][1]
-	
-	
-	var bb = [parseFloat(oldeast),-80,parseFloat(oldeast)-1,80];
-	
+
+
+			var bb = [parseFloat(oldeast),-80,parseFloat(oldeast)-1,80];
+
 			var NEXTPT = turf.random('points', 1, {
 				bbox: bb
 			});
-	
-	
-	var cntr = turf.getCoord(NEXTPT.features[0]);
-	
-	var cntrlat = cntr[1]
-	var cntrlng = cntr[0]
-	var bbm = [cntrlat,cntrlng]
-	console.log("bbm:");console.log(bbm);
-	
-	if(map.getBounds().contains(bbm) == false){
-	
-	        map.panTo(bbm)
-	}
-	
-	
-	
+
+
+			var cntr = turf.getCoord(NEXTPT.features[0]);
+
+			var cntrlat = cntr[1]
+			var cntrlng = cntr[0]
+			var bbm = [cntrlat,cntrlng]
+
+			if(map.getBounds().contains(bbm) == false){
+
+				map.panTo(bbm)
+			}
+
+
+
 			var xpp = L.geoJson(NEXTPT, {
 				style: function(fea, lay) {
 					return UTIL.get_style()
 				},
-				// onEachFeature: on_each,
 				pointToLayer: function(feature, latlng) {
-	                // return L.circleMarker(latlng, {radius: 8,fillColor: "#ff7800",color: "#000",weight: 1,opacity: 1,fillOpacity: 0.8});
-	                var micon = L.divIcon({className: 'stall-div-new',html:null});
-	
-	                return L.marker(latlng, {icon: micon})
-	                // .addTo(map);
-	                // return L.marker(latlng).addTo(map);
-	            }
-	
-	        }).addTo(NEXT)
+					var micon = L.divIcon({className: 'stall-div-new',html:null});
+					return L.marker(latlng, {icon: micon})
+				}
+
+			}).addTo(NEXT)
 
 		} // if NEXT.getLayers().length<1
-        
-    }
 
-    return this
-    .populate_report()
+	}
+
+	return this
+	.populate_report()
 
 
 }
 ,populate_report: function(){
 
-$(".stall-div-new").html($(this.el).find("#graffiti-submission").val());
+	$(".stall-div-new").html($(this.el).find("#graffiti-submission").val());
 
-return this
+	return this
 
 }
 ,execute_by_click: function() {

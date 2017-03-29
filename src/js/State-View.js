@@ -2,16 +2,26 @@ var StateView = Backbone.View.extend({
 
 	el: $("body"),
 	events: {
-		"click #paneToggler-split": "downout",
-		"click #paneToggler-down": "downout"
+		"click #paneToggler-split": "downout"
+		,"click #paneToggler-down": "downout"
+		,"keydown": "downout"
 	},
 	initialize: function() {
 		this.listenTo(this.model, 'change', this.render)
-			return this
-		},
-		downout: function(e) {
+		return this
+	}
+	,downout: function(e) {
 
+		if(e.type=="keydown" && e.keyCode == 17){
 			e.preventDefault();
+			var w = (appState.get("downout")=="split")?"out":"split";
+			appState.set({downout:w})
+		} else if(e.type=="keydown" && e.keyCode == 18){
+			e.preventDefault();
+			var w = (appState.get("downout")=="down")?"out":"down";
+			appState.set({downout:w})
+		} else {
+
 
 			var target = $(e.currentTarget).attr("id").split("-")[1]
 
@@ -20,16 +30,17 @@ if(this.model.get("downout")==target){
 	target = "out"
 }
 
-			this.model.set({downout:target})
+this.model.set({downout:target})
 
-			return this
+		} //type
+		return this
 
-		},
-		render: function(a) {
+	}
+	,render: function(a) {
 
-			switch (this.model.get("downout")) {
-				case "down":
-				$("#paneContainer").removeClass('split');
+		switch (this.model.get("downout")) {
+			case "down":
+			$("#paneContainer").removeClass('split');
 				$(".homeli").removeClass('split'); //gross but bootstrap responsive didn't work on these manual resizes
 				$(".hit-wrapper").removeClass('split'); //gross but bootstrap responsive didn't work on these manual resizes
 				$("#paneContainer").addClass('down');
@@ -58,10 +69,10 @@ if(this.model.get("downout")==target){
 				$(".hit-wrapper").removeClass('split'); //gross but bootstrap responsive didn't work on these manual resizes
 			}
 
-		$(document).attr("title", "Bathroom Stall: " + appState.get("slug"));
+			$(document).attr("title", "Bathroom Stall: " + appState.get("slug"));
 
-		return this
+			return this
 
-	}
+		}
 
-});
+	});
