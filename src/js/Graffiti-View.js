@@ -72,9 +72,9 @@ return ll
         	onEachFeature: on_each,
         	pointToLayer: function(feature, latlng) {
                 // return L.circleMarker(latlng, {radius: 8,fillColor: "#ff7800",color: "#000",weight: 1,opacity: 1,fillOpacity: 0.8});
-                var myIcon = L.divIcon({className: 'stall-div-1',html:feature.properties.name});
+                var micon = L.divIcon({className: 'stall-div-1',html:feature.properties.gfo});
 
-return L.marker(latlng, {icon: myIcon}).addTo(map);
+return L.marker(latlng, {icon: micon}).addTo(map);
             }
 
         }).addTo(GLJ)
